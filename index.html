@@ -542,11 +542,11 @@
 
         // callback: launched if a face is detected or lost
         function detect_callback(faceIndex, isDetected) {
-            if (isDetected) {
-                console.log('INFO in detect_callback(): DETECTED');
-            } else {
-                console.log('INFO in detect_callback(): LOST');
-            }
+            /*   if (isDetected) {
+                   console.log('INFO in detect_callback(): DETECTED');
+               } else {
+                   console.log('INFO in detect_callback(): LOST');
+               }*/
         }
 
         // build the 3D. called once when Jeeliz Face Filter is OK:
@@ -580,12 +580,12 @@
                 NNCPath: 'https://appstatic.jeeliz.com/faceFilter/NN_DEFAULT.json', // root of NN_DEFAULT.json file
                 maxFacesDetected: 1,
                 callbackReady: function (errCode, spec) {
-                    if (errCode) {
-                        console.log('AN ERROR HAPPENS. ERR =', errCode);
-                        return;
-                    }
+                    /* if (errCode) {
+                         console.log('AN ERROR HAPPENS. ERR =', errCode);
+                         return;
+                     }
 
-                    console.log('INFO: JEELIZFACEFILTER IS READY');
+                     console.log('INFO: JEELIZFACEFILTER IS READY');*/
                     init_threeScene(spec);
                 },
 
