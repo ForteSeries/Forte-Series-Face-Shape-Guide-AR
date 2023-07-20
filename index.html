@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-EN" />
+    <title>Custom Style for Displaying AR</title>
+
+    <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+    <script src="https://appstatic.jeeliz.com/faceFilter/jeelizFaceFilter.js"></script>
+
+    <!-- INCLUDE THREE.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r112/three.min.js"></script>
+
+    <!-- INCLUDE JEELIZ THREE.JS HELPER -->
+    <script src="https://appstatic.jeeliz.com/faceFilter/JeelizThreeHelper.js"></script>
+
+    <!-- INCLUDE JEELIZRESIZER -->
+    <script src="https://appstatic.jeeliz.com/faceFilter/JeelizResizer.js"></script>
+
+    <style>
+    /* Reset CSS styles */
+    html {
+        line-height: 1.15;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+    }
+
+    p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption {
+        margin: 0;
+        padding: 0;
+    }
+
+    button {
+        background-color: transparent;
+    }
+
+    button, input, optgroup, select, textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+    }
+
+    button, select {
+        text-transform: none;
+    }
+
+    button, [type="button"], [type="reset"], [type="submit"] {
+        -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+    }
+
+    button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus, [type="submit"]:-moz-focus {
+        outline: 1px dotted ButtonText;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    input {
+        padding: 2px 4px;
+    }
+
+    img {
+        display: block;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Default CSS styles */
+    html {
+        font-family: Inter;
+        font-size: 16px;
+    }
+
+    body {
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+    }
+
+    /* Combined CSS styles */
+    .home-container {
+        width: 80%;
+        display: flex;
+        overflow: auto;
+        min-height: 100vh;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-container1 {
+        gap: 0;
+        flex: 0;
+        width: 40%;
+        height: auto;
+        display: flex;
+        align-self: center;
+        align-items: flex-start;
+        padding-left: 2%;
+        padding-right: 2%;
+        flex-direction: column;
+        background-size: cover;
+        justify-content: center;
+        position: relative;
+    }
+
+    .home-image {
+        width: 25%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .home-container1 .feed {
+        position: absolute;
+        top: -5;
+        left: 0;
+        width: 100%;
+        height: 105%;
+        object-fit: fill;
+        z-index: -1;
+    }
+
+    .home-container2 {
+        gap: 0;
+        width: 15%;
+        height: 100%;
+        display: flex;
+        align-self: flex-start;
+        align-items: flex-start;
+        margin-bottom: 5%;
+        margin-left: -2%;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .home-image01 {
+        width: 300%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .home-image02 {
+        width: 300%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .home-image03 {
+        width: 300%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .home-image04 {
+        width: 300%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .home-image05 {
+        width: 300%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .home-image06 {
+        width: 300%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .home-container3 {
+        gap: 3%;
+        width: auto;
+        height: 100%;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .home-container4 {
+        flex: 0 0 auto;
+        width: 30%;
+        height: 100%;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        margin-left: 0%;
+        padding-top: 0%;
+        border-color: var(--dl-color-gray-black);
+        border-width: 0px;
+        margin-right: 0%;
+        padding-left: 0%;
+        border-radius: var(--dl-radius-radius-radius4);
+        padding-right: 0%;
+        flex-direction: column;
+        padding-bottom: 0%;
+        justify-content: center;
+        position: relative;
+    }
+
+    .home-container4 .home-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        z-index: -1;
+    }
+
+    .home-image07 {
+        width: 93%;
+        height: auto;
+        align-self: center;
+        margin-top: 4%;
+        object-fit: cover;
+        padding-left: 1%;
+        margin-bottom: -2%;
+    }
+
+    .home-image08 {
+        width: 94%;
+        height: auto;
+        align-self: flex-end;
+        object-fit: cover;
+        border-color: var(--dl-color-gray-black);
+        border-width: 0px;
+        padding-left: 0%;
+        border-radius: var(--dl-radius-radius-radius4);
+        padding-right: 0.9%;
+    }
+
+    .home-container5 {
+        flex: 0 0 auto;
+        width: 30%;
+        height: 100%;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        margin-left: 0%;
+        padding-top: 0%;
+        border-color: var(--dl-color-gray-black);
+        border-width: 0px;
+        margin-right: 0%;
+        padding-left: 0%;
+        border-radius: var(--dl-radius-radius-radius4);
+        padding-right: 0%;
+        flex-direction: column;
+        padding-bottom: 0%;
+        justify-content: center;
+        position: relative;
+    }
+
+    .home-container5 .home-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        z-index: -1;
+    }
+
+    .home-image09 {
+        width: 93%;
+        height: auto;
+        align-self: center;
+        margin-top: 4%;
+        object-fit: cover;
+        padding-left: 1%;
+        margin-bottom: -2%;
+    }
+
+    .home-image10 {
+        width: 94%;
+        height: auto;
+        align-self: flex-end;
+        object-fit: cover;
+        border-color: var(--dl-color-gray-black);
+        border-width: 0px;
+        padding-left: 0%;
+        border-radius: var(--dl-radius-radius-radius4);
+        padding-right: 0.9%;
+    }
+
+    .home-container6 {
+        flex: 0 0 auto;
+        width: 30%;
+        height: 100%;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        margin-left: 0%;
+        padding-top: 0%;
+        border-color: var(--dl-color-gray-black);
+        border-width: 0px;
+        margin-right: 0%;
+        padding-left: 0%;
+        border-radius: var(--dl-radius-radius-radius4);
+        padding-right: 0%;
+        flex-direction: column;
+        padding-bottom: 0%;
+        justify-content: center;
+        position: relative;
+    }
+
+    .home-container6 .home-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        z-index: -1;
+    }
+
+    .home-image11 {
+        width: 93%;
+        height: auto;
+        align-self: center;
+        margin-top: 4%;
+        object-fit: cover;
+        padding-left: 1%;
+        margin-bottom: -2%;
+    }
+
+    .home-image12 {
+        width: 94%;
+        height: auto;
+        align-self: flex-end;
+        object-fit: cover;
+        border-color: var(--dl-color-gray-black);
+        border-width: 0px;
+        padding-left: 0%;
+        border-radius: var(--dl-radius-radius-radius4);
+        padding-right: 0.9%;
+    }
+
+    @media(max-width: 991px) {
+        .home-container1 {
+            width: 40%;
+            height: 100%;
+        }
+        .home-image {
+            width: 30%;
+        }
+    }
+
+    @media(max-width: 767px) {
+        .home-container1 {
+            width: 70%;
+        }
+    }
+
+    @media(max-width: 479px) {
+        .home-container1 {
+            width: 90%;
+            height: 80%;
+            align-self: center;
+        }
+    }
+</style>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap">
+</head>
+
+<body>
+    <div class="home-container">
+        <div class="home-container1" id="main-background">
+            <canvas class="feed" id="background"></canvas>
+            <canvas class="feed" id='threeCanvas'></canvas>
+            <div id="flipping">
+                <img src="./Images/logo.png" alt="image" class="home-image" />
+                <div class="home-container2">
+                    <img src="./Images/buttonImages/bttn (7).png" alt="image" class="home-image01" />
+                    <img src="./Images/buttonImages/bttn (2).png" alt="image" class="home-image02" />
+                    <img src="./Images/buttonImages/bttn (3).png" alt="image" class="home-image03" />
+                    <img src="./Images/buttonImages/bttn (4).png" alt="image" class="home-image04" />
+                    <img src="./Images/buttonImages/bttn (5).png" alt="image" class="home-image05" />
+                    <img src="./Images/buttonImages/bttn (6).png" alt="image" class="home-image06" />
+                </div>
+                <div class="home-container3" id="hairstyles">
+                    <div class="home-container4">
+                        <img src="./Images/background/2.png" alt="image" class="home-background" />
+                        <img src="./Images/hairtypes/hairtype (1).png" alt="image" class="home-image07" />
+                        <img src="./Images/hairstyles/hairstyle (1).png" alt="image" class="home-image08" />
+                    </div>
+                    <div class="home-container5">
+                        <img src="./Images/background/2.png" alt="image" class="home-background" />
+                        <img src="./Images/hairtypes/hairtype (2).png" alt="image" class="home-image09" />
+                        <img src="./Images/hairstyles/hairstyle (4).png" alt="image" class="home-image10" />
+                    </div>
+                    <div class="home-container6">
+                        <img src="./Images/background/2.png" alt="image" class="home-background" />
+                        <img src="./Images/hairtypes/hairtype (3).png" alt="image" class="home-image11" />
+                        <img src="./Images/hairstyles/hairstyle (7).png" alt="image" class="home-image12" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const mainBackground = document.getElementById('main-background');
+        const toFlip = document.getElementById('flipping');
+        mainBackground.style.transform = 'scaleX(-1)';
+        toFlip.style.transform = 'scaleX(-1)';
+
+        var buttons;
+        var clickableImages;
+        var hairImageIndex = 0;
+        var isHairImageClicked = false;
+        var currentButtonIndex = 5;
+        let THREECAMERA = null;
+        var hide = true;
+        const planeTexture = new THREE.TextureLoader().load('./Images/FaceShapes/shape (1).png');
+        const planeMaterial = new THREE.MeshBasicMaterial({ map: planeTexture, transparent: true });
+        const planeGeometry = new THREE.PlaneGeometry(1.7, 1.7);
+        const threePlane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+        function clickeners() {
+            buttons = Array.from(document.querySelectorAll('.home-container2 img'));
+            buttons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    handleButtonClick(index);
+                });
+            });
+
+            function handleButtonClick(index) {
+                if (currentButtonIndex !== index + 1) {
+                    var i = index + 1 + 6;
+                    // Perform an action based on the index
+                    var j = index * 9;
+
+                    const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
+                    const imagesA = [];
+
+                    const loadImage = (src) => {
+                        return new Promise((resolve) => {
+                            const img = new Image();
+                            img.onload = () => resolve(img);
+                            img.src = src;
+                        });
+                    };
+
+                    for (var m = 0; m < 3; m++) {
+                        var m1 = m + 1;
+                        imagesA.push(loadImage(`./Images/hairtypes/hairtype (${m1}).png`));
+                        var k = j + m * 3 + 1;
+                        imagesA.push(loadImage(`./Images/hairstyles/hairstyle (${k}).png`));
+                    }
+
+                    imagesA.push(loadImage('./Images/background/2.png'));
+                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${i}).png`));
+                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${currentButtonIndex}).png`));
+
+                    const indexForThis = currentButtonIndex - 1;
+
+                    Promise.all(imagesA).then((loadedImagesA) => {
+                        for (let m = 0; m < 3; m++) {
+                            var images = Array.from(containers[m].getElementsByTagName('img'));
+                            images[0].src = loadedImagesA[6].src;
+                            images[1].src = loadedImagesA[m * 2].src;
+                            images[2].src = loadedImagesA[m * 2 + 1].src;
+                        }
+                        buttons[index].src = loadedImagesA[7].src;
+                        buttons[indexForThis].src = loadedImagesA[8].src;
+                    });
+
+                    currentButtonIndex = index + 1;
+                    var s = `./Images/FaceShapes/shape (${currentButtonIndex}).png`;
+                    planeMaterial.map = new THREE.TextureLoader().load(s);
+                    planeMaterial.needsUpdate = true;
+                    planeMaterial.map.repeat.x = -1;
+                    planeMaterial.map.offset.x = 1;
+
+                    if (currentButtonIndex == 2 || currentButtonIndex == 3 || currentButtonIndex == 5) {
+                        threePlane.scale.set(1.29, 1.29, 1);
+                        threePlane.position.y = 0.1;
+                    } else {
+                        threePlane.scale.set(1.1, 1.1, 1);
+                        threePlane.position.y = 0.1;
+                    }
+
+                    if (currentButtonIndex == 2) {
+                        threePlane.position.x = -0.05;
+                    } else {
+                        threePlane.position.x = 0.0;
+                    }
+
+                    isHairImageClicked = false;
+                }
+            }
+
+            const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
+            containers.forEach((container, containerIndex) => {
+                container.addEventListener('click', () => {
+                    handleContainerClick(containerIndex);
+                });
+            });
+
+            function handleContainerClick(containerIndex) {
+                if (!isHairImageClicked) {
+                    var j = containerIndex * 3 + (currentButtonIndex - 1) * 9 + 1;
+                    hairImageIndex = containerIndex + 1;
+                    var k = 0;
+
+                    const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
+                    const imagesB = [];
+
+                    const loadImage = (src) => {
+                        return new Promise((resolve) => {
+                            const img = new Image();
+                            img.onload = () => resolve(img);
+                            img.src = src;
+                        });
+                    };
+
+                    var i = currentButtonIndex + 6 + hairImageIndex * 6;
+
+                    for (var m = 0; m < 3; m++) {
+                        k = j + m;
+                        imagesB.push(loadImage(`./Images/hairnames/hairname (${k}).png`));
+                        imagesB.push(loadImage(`./Images/hairstyles/hairstyle (${k}).png`));
+                    }
+
+                    imagesB.push(loadImage('./Images/background/1.png'));
+                    imagesB.push(loadImage(`./Images/buttonImages/bttn (${i}).png`));
+
+                    Promise.all(imagesB).then((loadedImagesB) => {
+                        for (let m = 0; m < 3; m++) {
+                            var images = Array.from(containers[(containerIndex - m + 3) % 3].getElementsByTagName('img'));
+                            images[0].src = loadedImagesB[6].src;
+                            images[1].src = loadedImagesB[m * 2].src;
+                            images[2].src = loadedImagesB[m * 2 + 1].src;
+                        }
+                        buttons[currentButtonIndex - 1].src = loadedImagesB[7].src;
+                    });
+
+                    isHairImageClicked = true;
+                }
+            }
+
+            handleButtonClick(0);
+        }
+
+        function calculateCanvasDimensions() {
+            const windowHeight = window.innerHeight;
+            const desiredHeight = windowHeight;
+            const desiredWidth = Math.floor((windowHeight * 1200) / 1920);
+            const cropWidth = Math.floor((desiredHeight * 1200) / 1920);
+            const cropAmount = Math.floor((desiredWidth - cropWidth) / 2);
+
+            return { desiredWidth, desiredHeight, cropAmount, cropWidth };
+        }
+
+        const jeeFaceFilterCanvas = document.getElementById('jeeFaceFilterCanvas');
+        const threeCanvas = document.getElementById('threeCanvas');
+
+        // callback: launched if a face is detected or lost
+        function detect_callback(faceIndex, isDetected) {
+            if (isDetected) {
+                console.log('INFO in detect_callback(): DETECTED');
+            } else {
+                console.log('INFO in detect_callback(): LOST');
+            }
+        }
+
+        // build the 3D. called once when Jeeliz Face Filter is OK:
+        function init_threeScene(spec) {
+            spec.threeCanvasId = 'threeCanvas'; // enable 2 canvas mode
+            const threeStuffs = JeelizThreeHelper.init(spec, detect_callback);
+
+            threePlane.frustumCulled = false;
+            threeStuffs.faceObject.add(threePlane);
+
+            // CREATE THE CAMERA:
+            THREECAMERA = JeelizThreeHelper.create_camera();
+
+            clickeners();
+        }
+
+        // entry point:
+        function main() {
+            JeelizResizer.size_canvas({
+                canvasId: 'background',
+                callback: function (isError, bestVideoSettings) {
+                    init_faceFilter(bestVideoSettings);
+                }
+            });
+        }
+
+        function init_faceFilter(videoSettings) {
+            JEELIZFACEFILTER.init({
+                antialias: false,
+                canvasId: 'background',
+                NNCPath: 'https://appstatic.jeeliz.com/faceFilter/NN_DEFAULT.json', // root of NN_DEFAULT.json file
+                maxFacesDetected: 1,
+                callbackReady: function (errCode, spec) {
+                    if (errCode) {
+                        console.log('AN ERROR HAPPENS. ERR =', errCode);
+                        return;
+                    }
+
+                    console.log('INFO: JEELIZFACEFILTER IS READY');
+                    init_threeScene(spec);
+                },
+
+                // called at each render iteration (drawing loop):
+                callbackTrack: function (detectState) {
+                    JeelizThreeHelper.render(detectState, THREECAMERA);
+                }
+            }); //end JEELIZFACEFILTER.init call
+        }
+
+        window.addEventListener('load', main);
+    </script>
+</body>
+</html>
