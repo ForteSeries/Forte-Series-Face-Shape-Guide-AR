@@ -911,7 +911,7 @@ to balance between performance and quality
 
         // build the 3D. called once when Jeeliz Face Filter is OK:
         function init_threeScene(spec) {
-        //    spec.threeCanvasId = 'threeCanvas'; // enable 2 canvas mode
+            spec.threeCanvasId = 'threeCanvas'; // enable 2 canvas mode
             const threeStuffs = JeelizThreeHelper.init(spec, detect_callback);
 
             threePlane.frustumCulled = false;
