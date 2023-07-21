@@ -746,6 +746,8 @@ to balance between performance and quality
         mainBackground.style.transform = 'scaleX(-1)';
         toFlip.style.transform = 'scaleX(-1)';
 
+        mainBackground.style.visibility=hide;
+
         var buttons;
         var clickableImages;
         var hairImageIndex = 0;
@@ -944,6 +946,8 @@ to balance between performance and quality
                      }
 
                     console.log('INFO: JEELIZFACEFILTER IS READY');*/
+
+                    mainBackground.style.visibility=true;
                     setTimeout(function () {
                         document.getElementById("intro text").src = "./Images/Intro style0000.png";
                     }, 5000);
