@@ -944,7 +944,9 @@ to balance between performance and quality
                      }
 
                     console.log('INFO: JEELIZFACEFILTER IS READY');*/
-
+                    setTimeout(function () {
+                        document.getElementById("intro text").src = "./Images/Intro style0000.png";
+                    }, 5000);
                     init_threeScene(spec);
                 },
 
@@ -980,20 +982,7 @@ to balance between performance and quality
             mainBackground.style.left = (parentWidth - mainBackground.clientWidth) / 2 + 'px';
             mainBackground.style.top = (parentHeight - mainBackground.clientHeight) / 2 + 'px';
         }
-
-        setTimeout(function () {
-            document.getElementById("intro text").src = "./Images/Intro style0000.png";
-        }, 5000);
-
-        var backgroundee = document.getElementById("background");
-        function scalePixel() {
-            var s = `./Images/FaceShapes/shape (${currentButtonIndex}).png`;
-            planeMaterial.map = new THREE.TextureLoader().load(s);
-            planeMaterial.needsUpdate = true;
-            planeMaterial.map.repeat.x = -1;
-            planeMaterial.map.offset.x = 1;
-        }
-
+        
         window.addEventListener('resize', updateAspectRatio);
         updateAspectRatio();
 
