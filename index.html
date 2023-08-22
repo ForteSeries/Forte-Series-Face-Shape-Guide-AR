@@ -746,19 +746,21 @@ to balance between performance and quality
         mainBackground.style.transform = 'scaleX(-1)';
         toFlip.style.transform = 'scaleX(-1)';
 
-        mainBackground.style.visibility=hide;
+        mainBackground.style.visibility = hide;
 
         var buttons;
         var clickableImages;
         var hairImageIndex = 0;
         var isHairImageClicked = false;
-        var currentButtonIndex = 5;
+        var currentButtonIndex = 2;
         let THREECAMERA = null;
         var hide = true;
         const planeTexture = new THREE.TextureLoader().load('./Images/FaceShapes/shape (1).png');
         const planeMaterial = new THREE.MeshBasicMaterial({ map: planeTexture, transparent: true });
         const planeGeometry = new THREE.PlaneGeometry(1.7, 1.7);
         const threePlane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+        var indexOnlyForButtons = 0;
 
         var hideImage = true;
 
@@ -772,9 +774,19 @@ to balance between performance and quality
                 });
             });
 
-            function handleButtonClick(index) {
+            function handleButtonClick(index1) {
+
+                var index = -5;
+
+                if (index1 == 0) { index = 3; }
+                else if (index1 == 1) { index = 4; }
+                else if (index1 == 2) { index = 0; }
+                else if (index1 == 3) { index = 2; }
+                else if (index1 == 4) { index = 1; }
+                else if (index1 == 5) { index = 5; }
+
                 if (currentButtonIndex !== index + 1) {
-                    var i = index + 1 + 6;
+                    var i = index1 + 1 + 6;
                     // Perform an action based on the index
                     var j = index * 9;
 
@@ -798,9 +810,9 @@ to balance between performance and quality
 
                     imagesA.push(loadImage('./Images/background/2.png'));
                     imagesA.push(loadImage(`./Images/buttonImages/bttn (${i}).png`));
-                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${currentButtonIndex}).png`));
+                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${indexOnlyForButtons}).png`));
 
-                    const indexForThis = currentButtonIndex - 1;
+                    const indexForThis = indexOnlyForButtons - 1;
 
                     Promise.all(imagesA).then((loadedImagesA) => {
                         for (let m = 0; m < 3; m++) {
@@ -809,19 +821,21 @@ to balance between performance and quality
                             images[1].src = loadedImagesA[m * 2].src;
                             images[2].src = loadedImagesA[m * 2 + 1].src;
                         }
-                        buttons[index].src = loadedImagesA[7].src;
+                        buttons[index1].src = loadedImagesA[7].src;
                         buttons[indexForThis].src = loadedImagesA[8].src;
                     });
 
                     currentButtonIndex = index + 1;
 
-                    var s = `./Images/FaceShapes/shape (${currentButtonIndex}).png`;
+                    indexOnlyForButtons = index1 + 1;
+
+                    var s = `./Images/FaceShapes/shape (${indexOnlyForButtons}).png`;
                     planeMaterial.map = new THREE.TextureLoader().load(s);
                     planeMaterial.needsUpdate = true;
                     planeMaterial.map.repeat.x = -1;
                     planeMaterial.map.offset.x = 1;
 
-                    if (currentButtonIndex == 2 || currentButtonIndex == 3 || currentButtonIndex == 5) {
+                    if (indexOnlyForButtons == 2 || indexOnlyForButtons == 3 || indexOnlyForButtons == 5) {
                         threePlane.scale.set(1.29, 1.29, 1);
                         threePlane.position.y = 0.1;
                     } else {
@@ -829,7 +843,7 @@ to balance between performance and quality
                         threePlane.position.y = 0.1;
                     }
 
-                    if (currentButtonIndex == 2) {
+                    if (indexOnlyForButtons == 2) {
                         threePlane.position.x = -0.05;
                     } else {
                         threePlane.position.x = 0.0;
@@ -863,7 +877,7 @@ to balance between performance and quality
                         });
                     };
 
-                    var i = currentButtonIndex + 6 + hairImageIndex * 6;
+                    var i = indexOnlyForButtons + 6 + hairImageIndex * 6;
 
                     for (var m = 0; m < 3; m++) {
                         k = j + m;
@@ -881,7 +895,7 @@ to balance between performance and quality
                             images[1].src = loadedImagesB[m * 2].src;
                             images[2].src = loadedImagesB[m * 2 + 1].src;
                         }
-                        buttons[currentButtonIndex - 1].src = loadedImagesB[7].src;
+                        buttons[indexOnlyForButtons - 1].src = loadedImagesB[7].src;
                     });
 
                     if (hideImage) {
@@ -947,7 +961,7 @@ to balance between performance and quality
 
                     console.log('INFO: JEELIZFACEFILTER IS READY');*/
 
-                    mainBackground.style.visibility=true;
+                    mainBackground.style.visibility = true;
                     setTimeout(function () {
                         document.getElementById("intro text").src = "./Images/Intro style0000.png";
                     }, 5000);
@@ -986,7 +1000,7 @@ to balance between performance and quality
             mainBackground.style.left = (parentWidth - mainBackground.clientWidth) / 2 + 'px';
             mainBackground.style.top = (parentHeight - mainBackground.clientHeight) / 2 + 'px';
         }
-        
+
         window.addEventListener('resize', updateAspectRatio);
         updateAspectRatio();
 
