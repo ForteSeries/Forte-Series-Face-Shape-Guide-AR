@@ -234,6 +234,16 @@
                 z-index: -1;
             }
 
+            .home-container4 .products {
+                position: absolute;
+                visibility: hidden;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
+
         .home-image07 {
             width: 93%;
             height: auto;
@@ -287,6 +297,16 @@
                 z-index: -1;
             }
 
+            .home-container5 .products {
+                position: absolute;
+                visibility: hidden;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
+
         .home-image09 {
             width: 93%;
             height: auto;
@@ -338,6 +358,16 @@
                 height: 100%;
                 object-fit: fill;
                 z-index: -1;
+            }
+
+            .home-container6 .products {
+                position: absolute;
+                visibility: hidden;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
             }
 
         .home-image11 {
@@ -395,16 +425,19 @@
                         <img src="./Images/background/2.png" alt="image" class="home-background" />
                         <img src="./Images/hairtypes/hairtype (1).png" alt="image" class="home-image07" />
                         <img src="./Images/hairstyles/hairstyle (1).png" alt="image" class="home-image08" />
+                        <img src="./Images/products/1.png" alt="image" class="products" id="p1" />
                     </div>
                     <div class="home-container5">
                         <img src="./Images/background/2.png" alt="image" class="home-background" />
                         <img src="./Images/hairtypes/hairtype (2).png" alt="image" class="home-image09" />
                         <img src="./Images/hairstyles/hairstyle (4).png" alt="image" class="home-image10" />
+                        <img src="./Images/products/2.png" alt="image" class="products" id="p2" />
                     </div>
                     <div class="home-container6">
                         <img src="./Images/background/2.png" alt="image" class="home-background" />
                         <img src="./Images/hairtypes/hairtype (3).png" alt="image" class="home-image11" />
                         <img src="./Images/hairstyles/hairstyle (7).png" alt="image" class="home-image12" />
+                        <img src="./Images/products/3.png" alt="image" class="products" id="p3" />
                     </div>
                 </div>
             </div>
@@ -760,11 +793,84 @@ to balance between performance and quality
         const planeGeometry = new THREE.PlaneGeometry(1.7, 1.7);
         const threePlane = new THREE.Mesh(planeGeometry, planeMaterial);
 
+        var isProductsShown = false;
+
+        var productToHairstyle = new Array(new Array(9, 0, 5),
+            new Array(10, 2, 5),
+            new Array(10, 2, 5),
+            new Array(9, 1, 7),
+            new Array(9, 2, 5),
+            new Array(10, 4, 8),
+            new Array(10, 0, 5),
+            new Array(9, 0, 5),
+            new Array(9, 2, 5),
+            new Array(9, 0, 5),
+            new Array(10, 2, 5),
+            new Array(10, 2, 5),
+            new Array(10, 1, 6),
+            new Array(9, 3, 7),
+            new Array(9, 3, 5),
+            new Array(9, 2, 5),
+            new Array(9, 1, 7),
+            new Array(9, 2, 5),
+            new Array(9, 3, 5),
+            new Array(11, 0, 5),
+            new Array(9, 3, 5),
+            new Array(9, 3, 7),
+            new Array(9, 3, 5),
+            new Array(10, 1, 6),
+            new Array(9, 2, 5),
+            new Array(10, 0, 5),
+            new Array(9, 1, 7),
+            new Array(10, 2, 5),
+            new Array(9, 2, 5),
+            new Array(9, 3, 7),
+            new Array(9, 2, 5),
+            new Array(9, 3, 7),
+            new Array(10, 1, 6),
+            new Array(9, 3, 7),
+            new Array(10, 0, 5),
+            new Array(9, 2, 5),
+            new Array(9, 3, 5),
+            new Array(9, 2, 5),
+            new Array(9, 3, 7),
+            new Array(10, 1, 5),
+            new Array(9, 3, 5),
+            new Array(10, 1, 6),
+            new Array(9, 3, 5),
+            new Array(10, 0, 5),
+            new Array(9, 2, 5),
+            new Array(9, 3, 7),
+            new Array(11, 0, 5),
+            new Array(10, 2, 5),
+            new Array(10, 1, 5),
+            new Array(9, 3, 7),
+            new Array(9, 0, 5),
+            new Array(9, 2, 5),
+            new Array(9, 2, 5),
+            new Array(10, 2, 5));
+
+        const product1 = document.getElementById("p1");
+        const product2 = document.getElementById("p2");
+        const product3 = document.getElementById("p3");
+
         var indexOnlyForButtons = 0;
+
+        var z = -1;
 
         var hideImage = true;
 
+        var productText = true;
+
         var firsttime = true;
+
+        const loadImage = (src) => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.src = src;
+            });
+        };
 
         function clickeners() {
             buttons = Array.from(document.querySelectorAll('.home-container2 img'));
@@ -785,50 +891,63 @@ to balance between performance and quality
                 else if (index1 == 4) { index = 1; }
                 else if (index1 == 5) { index = 5; }
 
-                if (currentButtonIndex !== index + 1) {
-                    var i = index1 + 1 + 6;
-                    // Perform an action based on the index
-                    var j = index * 9;
 
-                    const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
-                    const imagesA = [];
+                var i = index1 + 1 + 6;
+                // Perform an action based on the index
+                var j = index * 9;
 
-                    const loadImage = (src) => {
-                        return new Promise((resolve) => {
-                            const img = new Image();
-                            img.onload = () => resolve(img);
-                            img.src = src;
-                        });
-                    };
+                var button_index_select = currentButtonIndex;
 
-                    for (var m = 0; m < 3; m++) {
-                        var m1 = m + 1;
-                        imagesA.push(loadImage(`./Images/hairtypes/hairtype (${m1}).png`));
-                        var k = j + m * 3 + 1;
-                        imagesA.push(loadImage(`./Images/hairstyles/hairstyle (${k}).png`));
+                const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
+                const imagesA = [];
+
+                for (var m = 0; m < 3; m++) {
+                    var m1 = m + 1;
+                    imagesA.push(loadImage(`./Images/hairtypes/hairtype (${m1}).png`));
+                    var k = j + m * 3 + 1;
+                    imagesA.push(loadImage(`./Images/hairstyles/hairstyle (${k}).png`));
+                }
+
+                imagesA.push(loadImage('./Images/background/2.png'));
+                imagesA.push(loadImage(`./Images/buttonImages/bttn (${i}).png`));
+
+                var indexForThis;
+                if (indexOnlyForButtons == 0) {
+                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${7}).png`));
+                    indexForThis = 0;
+                }
+                else {
+                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${indexOnlyForButtons}).png`));
+                    indexForThis = indexOnlyForButtons - 1;
+                }
+
+                Promise.all(imagesA).then((loadedImagesA) => {
+                    for (let m = 0; m < 3; m++) {
+                        var images = Array.from(containers[m].getElementsByTagName('img'));
+                        images[0].src = loadedImagesA[6].src;
+                        images[1].src = loadedImagesA[m * 2].src;
+                        images[2].src = loadedImagesA[m * 2 + 1].src;
+                    }
+                    buttons[index1].src = loadedImagesA[7].src;
+                    if (button_index_select !== index + 1) {
+                        buttons[indexForThis].src = loadedImagesA[8].src;
                     }
 
-                    imagesA.push(loadImage('./Images/background/2.png'));
-                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${i}).png`));
-                    imagesA.push(loadImage(`./Images/buttonImages/bttn (${indexOnlyForButtons}).png`));
+                    product1.style.visibility = "hidden";
+                    product2.style.visibility = "hidden";
+                    product3.style.visibility = "hidden";
 
-                    const indexForThis = indexOnlyForButtons - 1;
+                    if (!hideImage && productText) {
+                        document.getElementById("intro text").style.visibility = "hidden";
+                        productText = false;
+                    }
+                });
 
-                    Promise.all(imagesA).then((loadedImagesA) => {
-                        for (let m = 0; m < 3; m++) {
-                            var images = Array.from(containers[m].getElementsByTagName('img'));
-                            images[0].src = loadedImagesA[6].src;
-                            images[1].src = loadedImagesA[m * 2].src;
-                            images[2].src = loadedImagesA[m * 2 + 1].src;
-                        }
-                        buttons[index1].src = loadedImagesA[7].src;
-                        buttons[indexForThis].src = loadedImagesA[8].src;
-                    });
+                currentButtonIndex = index + 1;
 
-                    currentButtonIndex = index + 1;
+                indexOnlyForButtons = index1 + 1;
 
-                    indexOnlyForButtons = index1 + 1;
-
+                if (button_index_select !== index + 1) {
                     var s = `./Images/FaceShapes/shape (${indexOnlyForButtons}).png`;
                     planeMaterial.map = new THREE.TextureLoader().load(s);
                     planeMaterial.needsUpdate = true;
@@ -848,9 +967,11 @@ to balance between performance and quality
                     } else {
                         threePlane.position.x = 0.0;
                     }
-
-                    isHairImageClicked = false;
                 }
+
+                isHairImageClicked = false;
+
+                isProductsShown = false;
             }
 
             const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
@@ -869,14 +990,6 @@ to balance between performance and quality
                     const containers = Array.from(document.querySelectorAll('.home-container3 > div'));
                     const imagesB = [];
 
-                    const loadImage = (src) => {
-                        return new Promise((resolve) => {
-                            const img = new Image();
-                            img.onload = () => resolve(img);
-                            img.src = src;
-                        });
-                    };
-
                     var i = indexOnlyForButtons + 6 + hairImageIndex * 6;
 
                     for (var m = 0; m < 3; m++) {
@@ -890,7 +1003,7 @@ to balance between performance and quality
 
                     Promise.all(imagesB).then((loadedImagesB) => {
                         for (let m = 0; m < 3; m++) {
-                            var images = Array.from(containers[(containerIndex - m + 3) % 3].getElementsByTagName('img'));
+                            var images = Array.from(containers[(containerIndex + m) % 3].getElementsByTagName('img'));
                             images[0].src = loadedImagesB[6].src;
                             images[1].src = loadedImagesB[m * 2].src;
                             images[2].src = loadedImagesB[m * 2 + 1].src;
@@ -899,11 +1012,40 @@ to balance between performance and quality
                     });
 
                     if (hideImage) {
-                        document.getElementById("intro text").style.visibility = "hidden";
+                        document.getElementById("intro text").src = "./Images/product text.png";
                         hideImage = false;
                     }
 
+                    z = containerIndex * 3 + (currentButtonIndex - 1) * 9;
+
                     isHairImageClicked = true;
+                }
+                else if (!isProductsShown) {
+                    const selected_products = productToHairstyle[z + containerIndex];
+
+                    const imagesE = [];
+
+                    imagesE.push(loadImage(`./Images/products/${selected_products[0] + 1}.png`));
+                    imagesE.push(loadImage(`./Images/products/${selected_products[1] + 1}.png`));
+                    imagesE.push(loadImage(`./Images/products/${selected_products[2] + 1}.png`));
+
+                    Promise.all(imagesE).then((loadedImagesE) => {
+                        console.log(z);
+                        console.log(selected_products);
+                        product1.src = loadedImagesE[0].src;
+                        product2.src = loadedImagesE[1].src;
+                        product3.src = loadedImagesE[2].src;
+                        product1.style.visibility = "visible";
+                        product2.style.visibility = "visible";
+                        product3.style.visibility = "visible";
+                    });
+
+                    if (productText) {
+                        document.getElementById("intro text").style.visibility = "hidden";
+                        productText = false;
+                    }
+
+                    isProductsShown = true
                 }
             }
 
@@ -963,8 +1105,10 @@ to balance between performance and quality
 
                     mainBackground.style.visibility = true;
                     setTimeout(function () {
-                        document.getElementById("intro text").src = "./Images/Intro style0000.png";
-                    }, 5000);
+                        if (hideImage) {
+                            document.getElementById("intro text").src = "./Images/Intro style0000.png";
+                        }
+                    }, 6000);
                     init_threeScene(spec);
                 },
 
