@@ -795,6 +795,8 @@ to balance between performance and quality
 
         var isProductsShown = false;
 
+        var introIsHideable = false;
+
         var productToHairstyle = new Array(new Array(9, 0, 5),
             new Array(10, 2, 5),
             new Array(10, 2, 5),
@@ -969,7 +971,7 @@ to balance between performance and quality
                     }
                 }
 
-                if (!hideImage){
+                if (introIsHideable){
                     document.getElementById("intro text").style.visibility="hidden";
                 }
 
@@ -1045,6 +1047,9 @@ to balance between performance and quality
                     });
 
                     document.getElementById("intro text").src = "./Images/Promo Forte Series.png";
+
+                    introIsHideable=true;
+                    
                     document.getElementById("intro text").style.visibility="visible";
                     
                     isProductsShown = true
