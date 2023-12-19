@@ -939,7 +939,7 @@ to balance between performance and quality
                     product2.style.visibility = "hidden";
                     product3.style.visibility = "hidden";
 
-                    if (!hideImage && productText) {
+                    if (introIsHideable) {
                         document.getElementById("intro text").style.visibility = "hidden";
                         productText = false;
                     }
@@ -970,11 +970,7 @@ to balance between performance and quality
                         threePlane.position.x = 0.0;
                     }
                 }
-
-                if (introIsHideable){
-                    document.getElementById("intro text").style.visibility="hidden";
-                }
-
+                
                 isHairImageClicked = false;
 
                 isProductsShown = false;
@@ -1036,8 +1032,6 @@ to balance between performance and quality
                     imagesE.push(loadImage(`./Images/products/${selected_products[2] + 1}.png`));
 
                     Promise.all(imagesE).then((loadedImagesE) => {
-                        console.log(z);
-                        console.log(selected_products);
                         product1.src = loadedImagesE[0].src;
                         product2.src = loadedImagesE[1].src;
                         product3.src = loadedImagesE[2].src;
