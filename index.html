@@ -969,6 +969,8 @@ to balance between performance and quality
                     }
                 }
 
+                document.getElementById("intro text").style.visibility="hidden";
+
                 isHairImageClicked = false;
 
                 isProductsShown = false;
@@ -1040,11 +1042,9 @@ to balance between performance and quality
                         product3.style.visibility = "visible";
                     });
 
-                    if (productText) {
-                        document.getElementById("intro text").style.visibility = "hidden";
-                        productText = false;
-                    }
-
+                    document.getElementById("intro text").src = "./Images/Promo Forte Series.png";
+                    document.getElementById("intro text").style.visibility="visible";
+                    
                     isProductsShown = true
                 }
             }
