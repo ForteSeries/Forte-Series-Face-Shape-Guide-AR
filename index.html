@@ -969,7 +969,9 @@ to balance between performance and quality
                     }
                 }
 
-                document.getElementById("intro text").style.visibility="hidden";
+                if (!hideImage){
+                    document.getElementById("intro text").style.visibility="hidden";
+                }
 
                 isHairImageClicked = false;
 
